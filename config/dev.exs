@@ -37,7 +37,7 @@ config :libguru, LibguruWeb.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/libguru_web/views/.*(ex)$},
-      ~r{lib/libguru_web/templates/.*(eex)$}
+      ~r{lib/libguru_web/templates/.*(eex|haml)$}
     ]
   ]
 
