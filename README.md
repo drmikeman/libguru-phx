@@ -1,5 +1,7 @@
 # Libguru
 
+[![Build Status](https://semaphoreci.com/api/v1/projects/6498270b-d7b5-4580-941b-f97b1923fad6/2134240/shields_badge.svg)](https://semaphoreci.com/drmikeman-33/libguru-phx)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`

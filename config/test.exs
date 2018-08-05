@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :libguru, Libguru.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "runner",
+  password: "semaphoredb",
   database: "libguru_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
