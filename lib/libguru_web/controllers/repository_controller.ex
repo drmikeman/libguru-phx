@@ -1,4 +1,4 @@
-defmodule LibguruWeb.PageController do
+defmodule LibguruWeb.RepositoryController do
   use LibguruWeb, :controller
 
   def index(conn, _params) do

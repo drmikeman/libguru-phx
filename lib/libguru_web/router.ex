@@ -16,7 +16,7 @@ defmodule LibguruWeb.Router do
   scope "/", LibguruWeb do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", RepositoryController, :index
   end
 
   # Other scopes may use custom stacks.

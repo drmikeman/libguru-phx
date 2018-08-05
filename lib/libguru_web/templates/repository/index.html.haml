@@ -1,0 +1,17 @@
+.jumbotron
+  %h2= gettext "Welcome to %{name}!", name: "Phoenix"
+  %p.lead A productive web framework that does not compromise speed and maintainability
+
+.row
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"} #
+        %th{scope: "col"} Repository
+        %th{scope: "col"} Url
+    %tbody
+      %tr
+        %th{scope: "col"} 1
+          %td Name of the repo
+          %td
+            %a(href="http://www.github.com") www
