@@ -1,0 +1,16 @@
+.jumbotron
+  %h2 Libraries
+  %p.lead A list of labraries retrieved by the app
+.row
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"} #
+        %th{scope: "col"} Repository
+        %th{scope: "col"} Url
+    %tbody
+      - for {repository, idx} <- Stream.with_index(@repositories, 1) do
+        %tr
+          %th{scope: "col"}= idx
+            %td= repository.name
+            %td= link(repository.url, to: repository.url)

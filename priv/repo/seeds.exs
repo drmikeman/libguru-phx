@@ -9,3 +9,21 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+Libguru.Repo.insert!(%Libguru.Repository{
+  name: "hotelstonight",
+  description: "HotelTonight",
+  url: "https://github.com/hoteltonight/hotelstonight"
+})
+
+Libguru.Repo.insert!(%Libguru.Repository{
+  name: "jaacoo",
+  description: "Jaacoo",
+  url: "https://github.com/netguru/jaacoo"
+})
+
+Libguru.Repo.insert!(%Libguru.Repository{
+  name: "permissions",
+  description: "Permissions",
+  url: "https://github.com/netguru/permissions"
+})
