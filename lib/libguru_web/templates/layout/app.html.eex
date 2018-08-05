@@ -20,20 +20,19 @@
   <body>
     <div class="container">
       <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
+        <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+          <h5 class="my-0 mr-md-auto font-weight-normal">
+            <a href="/" class="navbar-brand text-dark"><strong>Libguru</strong></a>
+          </h5>
+        </div>
       </header>
 
       <!-- Alert messages -->
       <%= unless is_nil(get_flash(@conn, :info)) do %>
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <% end %>
       <%= unless is_nil(get_flash(@conn, :error)) do %>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <% end %>
 
       <main role="main">
