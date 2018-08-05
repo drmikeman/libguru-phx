@@ -1,7 +1,6 @@
 .jumbotron
-  %h2= gettext "Welcome to %{name}!", name: "Phoenix"
-  %p.lead A productive web framework that does not compromise speed and maintainability
-
+  %h2 Libraries
+  %p.lead A list of labraries retrieved by the app
 .row
   %table.table
     %thead
@@ -10,8 +9,8 @@
         %th{scope: "col"} Repository
         %th{scope: "col"} Url
     %tbody
-      %tr
-        %th{scope: "col"} 1
-          %td Name of the repo
-          %td
-            %a(href="http://www.github.com") www
+      - for {repository, idx} <- Stream.with_index(@repositories, 1) do
+        %tr
+          %th{scope: "col"}= idx
+            %td= repository.name
+            %td= link(repository.url, to: repository.url)
