@@ -12,5 +12,5 @@
       - for {repository, idx} <- Stream.with_index(@repositories, 1) do
         %tr
           %th{scope: "col"}= idx
-            %td= repository.name
+            %td= link(repository.name, to: repository_path(@conn, :show, repository.id))
             %td= link(repository.url, to: repository.url)
