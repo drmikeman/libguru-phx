@@ -1,8 +1,31 @@
 defmodule LibguruWeb.RepositoryControllerTest do
   use LibguruWeb.ConnCase
+  import Libguru.Factory
 
-  test "GET /", %{conn: conn} do
-    conn = get conn, "/"
-    assert html_response(conn, 200) =~ "Libraries"
+  test "index/2 responds with all Libraries", %{conn: conn} do
+    repositories = insert_pair(:repository)
+
+    conn = get(conn, repository_path(conn, :index))
+
+    for repository <- repositories do
+      assert html_response(conn, 200) =~ repository.name
+    end
+  end
+
+  describe "show/2" do
+    test "responds with repository info if the repository found", %{conn: conn} do
+      repository = insert(:repository)
+
+      conn = get(conn, repository_path(conn, :show, repository.id))
+
+      assert html_response(conn, 200) =~ repository.name
+    end
+
+    test "responds with a message indicating repository not found", %{conn: conn} do
+      conn = get(conn, repository_path(conn, :show, 5))
+
+      assert redirected_to(conn, 302) =~ repository_path(conn, :index)
+      assert get_flash(conn, :error) =~ "Repository not found"
+    end
   end
 end
