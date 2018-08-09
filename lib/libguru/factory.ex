@@ -8,4 +8,12 @@ defmodule Libguru.Factory do
       url: "http://github.com"
     }
   end
+
+  def library_factory do
+    %Libguru.Library{
+      name: sequence(:name, &"repository#{&1}"),
+      info: "Repository description",
+      url: "http://github.com"
+    }
+  end
 end
