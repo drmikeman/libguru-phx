@@ -1,18 +1,18 @@
 defmodule Libguru.Factory do
   use ExMachina.Ecto, repo: Libguru.Repo
 
-  def repository_factory do
-    %Libguru.Repository{
-      name: sequence(:name, &"repository#{&1}"),
-      description: "Repository description",
+  def library_factory do
+    %Libguru.Library{
+      name: Faker.Company.buzzword_suffix(),
+      info: Faker.Lorem.sentence(7),
       url: "http://github.com"
     }
   end
 
-  def library_factory do
-    %Libguru.Library{
-      name: sequence(:name, &"repository#{&1}"),
-      info: "Repository description",
+  def repository_factory do
+    %Libguru.Repository{
+      name: Faker.Team.name,
+      description: Faker.Lorem.sentence(7),
       url: "http://github.com"
     }
   end
