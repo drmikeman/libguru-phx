@@ -1,0 +1,16 @@
+.jumbotron
+  %h2 Libraries
+  %p.lead A list of libraries used by the projects in Netguru
+.row
+  %table.table
+    %thead
+      %tr
+        %th{scope: "col"} #
+        %th{scope: "col"} Library
+        %th{scope: "col"} Url
+    %tbody
+      - for {library, idx} <- Stream.with_index(@libraries, 1) do
+        %tr
+          %th{scope: "col"}= idx
+            %td= link(library.name, to: library_path(@conn, :show, library.id))
+            %td= link(library.url, to: library.url)
