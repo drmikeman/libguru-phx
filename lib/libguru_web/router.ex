@@ -16,6 +16,7 @@ defmodule LibguruWeb.Router do
   scope "/", LibguruWeb do
     pipe_through :browser # Use the default browser stack
 
+    resources "/libraries", LibraryController, only: [:index, :show]
     resources "/repositories", RepositoryController, only: [:index, :show]
     get "/", RepositoryController, :index
   end
