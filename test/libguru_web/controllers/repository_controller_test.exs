@@ -2,7 +2,7 @@ defmodule LibguruWeb.RepositoryControllerTest do
   use LibguruWeb.ConnCase
   import Libguru.Factory
 
-  test "index/2 responds with all Libraries", %{conn: conn} do
+  test "index/2 responds with all repositories", %{conn: conn} do
     repositories = insert_pair(:repository)
 
     conn = get(conn, repository_path(conn, :index))

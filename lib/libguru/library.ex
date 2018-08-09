@@ -1,11 +1,11 @@
-defmodule Libguru.Repository do
+defmodule Libguru.Library do
   use Ecto.Schema
   import Ecto.Changeset
 
 
-  schema "repositories" do
+  schema "libraries" do
     field :name, :string
-    field :description, :string
+    field :info, :string
     field :url, :string
 
     timestamps()
@@ -14,7 +14,7 @@ defmodule Libguru.Repository do
   @doc false
   def changeset(repository, attrs) do
     repository
-    |> cast(attrs, [:name, :description, :url])
+    |> cast(attrs, [:name, :info, :url])
     |> validate_required([:name, :url])
   end
 end
