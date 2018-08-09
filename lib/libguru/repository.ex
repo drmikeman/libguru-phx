@@ -4,8 +4,8 @@ defmodule Libguru.Repository do
 
 
   schema "repositories" do
-    field :description, :string
     field :name, :string
+    field :description, :string
     field :url, :string
 
     timestamps()
