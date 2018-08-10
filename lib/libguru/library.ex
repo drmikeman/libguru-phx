@@ -7,7 +7,7 @@ defmodule Libguru.Library do
     field :name, :string
     field :info, :string
     field :url, :string
-
+    many_to_many :repositories, Libguru.Repository, join_through: Libguru.Dependency
     timestamps()
   end
 
