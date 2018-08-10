@@ -11,5 +11,18 @@
 # and so on) as they will fail if something goes wrong.
 import Libguru.Factory
 
-insert_list(3, :library)
-insert_list(3, :repository)
+defmodule Libguru.Seeds do
+  def insert_dependency(library_id, repository_id) do
+    %Libguru.Dependency{
+      library_id: library_id,
+      repository_id: repository_id,
+    } |> Libguru.Repo.insert!
+  end
+end
+
+libraries = insert_list(3, :library)
+repositories = insert_list(3, :repository)
+
+Libguru.Seeds.insert_dependency 1, 1
+Libguru.Seeds.insert_dependency 1, 2
+Libguru.Seeds.insert_dependency 2, 1
