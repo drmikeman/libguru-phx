@@ -2,3 +2,9 @@
   %h2= @library.name
   %p.lead= @library.info
   %p= link(@library.url, to: @library.url)
+
+%h3 Repositories
+%p.lead A list of Github repositories in Netguru which uses <strong>#{@library.name}</strong>
+
+.row
+   = render LibguruWeb.SharedView, "repositories.html", assigns

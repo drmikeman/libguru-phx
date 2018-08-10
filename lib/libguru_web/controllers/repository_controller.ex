@@ -8,14 +8,17 @@ defmodule LibguruWeb.RepositoryController do
   end
 
   def show(conn, %{"id" => id}) do
-    case Repo.get(Repository, id) do
+    Repository
+    |> Repo.get(id)
+    |> Repo.preload(:libraries)
+    |> case do
       nil ->
         conn
         |> put_flash(:error, "Repository not found")
         |> redirect(to: repository_path(conn, :index))
 
       repository ->
-        render(conn, "show.html", repository: repository)
+        render(conn, "show.html", repository: repository, libraries: repository.libraries)
     end
   end
 end
