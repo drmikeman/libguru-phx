@@ -1,0 +1,12 @@
+%table.table
+  %thead
+    %tr
+      %th{scope: "col"} #
+      %th{scope: "col"} Library
+      %th{scope: "col"} Url
+  %tbody
+    - for {library, idx} <- Stream.with_index(@libraries, 1) do
+      %tr
+        %th{scope: "col"}= idx
+          %td= link(library.name, to: library_path(@conn, :show, library.id))
+          %td= link(library.url, to: library.url)

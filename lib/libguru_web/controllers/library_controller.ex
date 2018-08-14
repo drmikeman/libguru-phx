@@ -8,14 +8,17 @@ defmodule LibguruWeb.LibraryController do
   end
 
   def show(conn, %{"id" => id}) do
-    case Repo.get(Library, id) do
+    Library
+    |> Repo.get(id)
+    |> Repo.preload(:repositories)
+    |> case do
       nil ->
         conn
         |> put_flash(:error, "Library not found")
         |> redirect(to: library_path(conn, :index))
 
       library ->
-        render(conn, "show.html", library: library)
+        render(conn, "show.html", library: library, repositories: library.repositories)
     end
   end
 end

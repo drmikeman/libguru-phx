@@ -2,3 +2,6 @@
   %h2= @repository.name
   %p.lead= @repository.description
   %p= link(@repository.url, to: @repository.url)
+
+.row
+   = render LibguruWeb.SharedView, "libraries.html", assigns
