@@ -27,5 +27,14 @@ defmodule LibguruWeb.RepositoryControllerTest do
       assert redirected_to(conn, 302) =~ repository_path(conn, :index)
       assert get_flash(conn, :error) =~ "Repository not found"
     end
+
+    test "responds with a list of libraries", %{conn: conn} do
+      repository = insert(:repository) |> with_libraries |> Libguru.Repo.preload(:libraries)
+      library = repository.libraries |> List.first
+
+      conn = get(conn, repository_path(conn, :show, repository.id))
+
+      assert html_response(conn, 200) =~ library.name
+    end
   end
 end
