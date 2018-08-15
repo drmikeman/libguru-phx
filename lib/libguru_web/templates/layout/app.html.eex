@@ -33,6 +33,9 @@
             <li class="nav-item active">
               <%= link("Libraries", to: library_path(@conn, :index), class: "nav-link") %>
             </li>
+            <li class="nav-item active">
+              <%= link("Ranking", to: library_path(@conn, :ranking), class: "nav-link") %>
+            </li>
           </ul>
         </div>
       </nav>

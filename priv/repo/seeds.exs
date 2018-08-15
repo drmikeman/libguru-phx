@@ -20,9 +20,9 @@ defmodule Libguru.Seeds do
   end
 end
 
-insert_list(3, :library)
-insert_list(3, :repository)
+libraries = insert_list(3, :library)
+repositories = insert_list(3, :repository)
 
-Libguru.Seeds.insert_dependency 1, 1
-Libguru.Seeds.insert_dependency 1, 2
-Libguru.Seeds.insert_dependency 2, 1
+Libguru.Library.add_repository_to_library(Enum.at(repositories, 0), Enum.at(libraries, 0))
+Libguru.Library.add_repository_to_library(Enum.at(repositories, 1), Enum.at(libraries, 0))
+Libguru.Library.add_repository_to_library(Enum.at(repositories, 2), Enum.at(libraries, 1))
