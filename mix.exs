@@ -45,6 +45,7 @@ defmodule Libguru.Mixfile do
       {:distillery, "~> 1.0.0"},
       {:ex_machina, "~> 2.2"},
       {:faker, "~> 0.10"},
+      {:tentacat, "~> 1.0"},
     ]
   end
 
