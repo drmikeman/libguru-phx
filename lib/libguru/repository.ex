@@ -2,7 +2,6 @@ defmodule Libguru.Repository do
   use Ecto.Schema
   import Ecto.Changeset
 
-
   schema "repositories" do
     field :name, :string
     field :description, :string

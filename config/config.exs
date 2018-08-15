@@ -14,8 +14,7 @@ config :libguru, LibguruWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "h8fCFz8b2YU6VRI5IYzx4F1MrIysVqXVFizspegBECXXVY8BW6rJTao/6eGcbLas",
   render_errors: [view: LibguruWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Libguru.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Libguru.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures template engines
 config :phoenix, :template_engines,

@@ -12,4 +12,4 @@ config :libguru, Libguru.Repo,
   url: "${DATABASE_URL}",
   database: "",
   ssl: true,
-  pool_size: 1 # Free tier db only allows 1 connection
+  pool_size: 1 # free tier db only allows 1 connection
