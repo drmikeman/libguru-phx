@@ -18,6 +18,7 @@ defmodule LibguruWeb.Router do
 
     resources "/libraries", LibraryController, only: [:index, :show]
     resources "/repositories", RepositoryController, only: [:index, :show]
+    get "/ranking", LibraryController, :ranking
     get "/", RepositoryController, :index
   end
 

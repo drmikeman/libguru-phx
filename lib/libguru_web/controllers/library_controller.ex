@@ -3,6 +3,8 @@ defmodule LibguruWeb.LibraryController do
 
   alias Libguru.{Library, Repo}
 
+  require Ecto.Query
+
   def index(conn, _params) do
     render(conn, "index.html", libraries: Repo.all(Library))
   end
@@ -20,5 +22,9 @@ defmodule LibguruWeb.LibraryController do
       library ->
         render(conn, "show.html", library: library, repositories: library.repositories)
     end
+  end
+
+  def ranking(conn, _params) do
+    render(conn, "ranking.html", libraries: Library |> Ecto.Query.order_by(desc: :repository_count) |> Repo.all )
   end
 end
