@@ -25,13 +25,13 @@ defmodule LibguruWeb.ChannelCase do
     end
   end
 
-
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Libguru.Repo)
+
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(Libguru.Repo, {:shared, self()})
     end
+
     :ok
   end
-
 end
