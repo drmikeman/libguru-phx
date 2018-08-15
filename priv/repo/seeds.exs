@@ -20,8 +20,8 @@ defmodule Libguru.Seeds do
   end
 end
 
-libraries = insert_list(3, :library)
-repositories = insert_list(3, :repository)
+insert_list(3, :library)
+insert_list(3, :repository)
 
 Libguru.Seeds.insert_dependency 1, 1
 Libguru.Seeds.insert_dependency 1, 2
