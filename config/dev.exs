@@ -62,3 +62,5 @@ config :libguru, Libguru.Repo,
   database: "libguru_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :libguru, :github_api, Tentacat

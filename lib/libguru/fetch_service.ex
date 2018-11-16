@@ -1,5 +1,6 @@
 defmodule Libguru.FetchService do
   require Ecto.Query
+  @github_api Application.get_env(:libguru, :github_api)
 
   def process do
     fetch_repositories()
@@ -7,7 +8,7 @@ defmodule Libguru.FetchService do
   end
 
   def fetch_repositories do
-    {200, data, _response} = Tentacat.Repositories.list_mine(client(), type: "owner")
+    {200, data, _response} = @github_api.Repositories.list_mine(client(), type: "owner")
     data |> Enum.map(&fetch_repository_data/1)
   end
 
@@ -46,7 +47,7 @@ defmodule Libguru.FetchService do
   end
 
   def fetch_gemfile(repository) do
-    case Tentacat.Contents.find(client(), "drmikeman", repository.name, "Gemfile.lock") do
+    case @github_api.Contents.find(client(), "drmikeman", repository.name, "Gemfile.lock") do
       {200, data, _response} ->
         data |> Map.get("content") |> Base.decode64(ignore: :whitespace)
       _ ->  {:error}
@@ -58,7 +59,7 @@ defmodule Libguru.FetchService do
   end
 
   def process_gemfile({:ok, gemfile}) do
-    [_, deps] = Regex.run(~r/DEPENDENCIES\n(?<deps>.*)(?=\n\nRUBY)/s, gemfile)
+    [_, deps] = Regex.run(~r/DEPENDENCIES\n(?<deps>.*)(?=\n\n)/s, gemfile)
     Regex.scan(~r/\s*([\w\d-]+)\s/, deps) |> Enum.map(&(Enum.at(&1, 1)))
   end
 

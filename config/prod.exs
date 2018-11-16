@@ -13,3 +13,5 @@ config :libguru, Libguru.Repo,
   database: "",
   ssl: true,
   pool_size: 1 # free tier db only allows 1 connection
+
+config :libguru, :github_api, Tentacat
