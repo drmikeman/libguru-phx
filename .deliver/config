@@ -1,0 +1,49 @@
+APP="libguru"
+
+BUILD_HOST="libguru.internal.devguru.co"
+BUILD_USER="deploy"
+BUILD_AT="/home/deploy/libguru_build"
+
+PRODUCTION_HOSTS="libguru.internal.devguru.co" 
+PRODUCTION_USER="deploy" 
+DELIVER_TO="/home/deploy/libguru_release"
+
+pre_erlang_clean_compile() {
+ status "Installing nodejs dependencies"
+ __sync_remote "
+   [ -f ~/.profile ] && source ~/.profile
+   set -e
+   cd '$BUILD_AT'
+
+   APP='$APP' MIX_ENV='$TARGET_MIX_ENV' npm install
+ "
+
+ status "Building static assets"
+ __sync_remote "
+   [ -f ~/.profile ] && source ~/.profile
+   set -e
+   cd '$BUILD_AT/assets'
+
+   mkdir -p priv/static
+   APP='$APP' MIX_ENV='$TARGET_MIX_ENV' npm install
+   APP='$APP' MIX_ENV='$TARGET_MIX_ENV' npm run deploy
+ "
+
+ status "Compiling code"
+ __sync_remote "
+   [ -f ~/.profile ] && source ~/.profile
+   set -e #
+   cd '$BUILD_AT'
+
+   APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD do deps.get, compile
+ "
+
+ status "Running phoenix.digest"
+ __sync_remote "
+   [ -f ~/.profile ] && source ~/.profile
+   set -e #
+   cd '$BUILD_AT'
+
+   APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
+ "
+}
