@@ -46,7 +46,7 @@ defmodule Libguru.FetchService do
   end
 
   def fetch_gemfile(repository) do
-    case Tentacat.Contents.find(client(), "drmikeman", repository.name, "Gemfile.lock") do
+    case Tentacat.Contents.find(client(), Application.get_env(:libguru, :github_org), repository.name, "Gemfile.lock") do
       {200, data, _response} ->
         data |> Map.get("content") |> Base.decode64(ignore: :whitespace)
       _ ->  {:error}

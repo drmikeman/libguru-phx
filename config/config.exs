@@ -8,7 +8,8 @@ use Mix.Config
 # General application configuration
 config :libguru,
   ecto_repos: [Libguru.Repo],
-  github_token: System.get_env("GITHUB_CLIENT_TOKEN")
+  github_token: System.get_env("GITHUB_CLIENT_TOKEN"),
+  github_org: System.get_env("GITHUB_ORG")
 
 # Configures the endpoint
 config :libguru, LibguruWeb.Endpoint,
