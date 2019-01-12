@@ -9,7 +9,8 @@ config :libguru, LibguruWeb.Endpoint,
 
 config :libguru, Libguru.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: "${DATABASE_URL}",
-  database: "",
-  ssl: true,
+  database: System.get_env("POSTGRES_DB"),
+  username: System.get_env("POSTGRES_USER"),
+  password: System.get_env("POSTGRES_PASSWORD"),
+  hostname: System.get_env("POSTGRES_HOST"),
   pool_size: 1 # free tier db only allows 1 connection
