@@ -2,48 +2,16 @@ APP="libguru"
 
 BUILD_HOST="libguru.internal.devguru.co"
 BUILD_USER="deploy"
-BUILD_AT="/home/deploy/libguru_build"
+BUILD_AT="/home/deploy/apps/libguru/build"
 
 PRODUCTION_HOSTS="libguru.internal.devguru.co" 
 PRODUCTION_USER="deploy" 
-DELIVER_TO="/home/deploy/libguru_release"
+DELIVER_TO="/home/deploy/apps/libguru/release"
 
 pre_erlang_clean_compile() {
- status "Installing nodejs dependencies"
+ status "Building docker image"
  __sync_remote "
-   [ -f ~/.profile ] && source ~/.profile
-   set -e
-   cd '$BUILD_AT'
-
-   APP='$APP' MIX_ENV='$TARGET_MIX_ENV' npm install
- "
-
- status "Building static assets"
- __sync_remote "
-   [ -f ~/.profile ] && source ~/.profile
-   set -e
-   cd '$BUILD_AT/assets'
-
-   mkdir -p priv/static
-   APP='$APP' MIX_ENV='$TARGET_MIX_ENV' npm install
-   APP='$APP' MIX_ENV='$TARGET_MIX_ENV' npm run deploy
- "
-
- status "Compiling code"
- __sync_remote "
-   [ -f ~/.profile ] && source ~/.profile
-   set -e #
-   cd '$BUILD_AT'
-
-   APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD do deps.get, compile
- "
-
- status "Running phoenix.digest"
- __sync_remote "
-   [ -f ~/.profile ] && source ~/.profile
-   set -e #
-   cd '$BUILD_AT'
-
-   APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
+  cd '$BUILD_AT'
+  docker-compose -f docker-compose-production.yml build
  "
 }

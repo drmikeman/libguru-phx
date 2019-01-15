@@ -2,7 +2,7 @@ version: "3.2"
 services:
   web:
     env_file: 
-      - /home/deploy/apps/libguru/shared/secrets.env
+      - ~/apps/libguru/shared/secrets.env
     build:
       context: .
       dockerfile: docker/production/Dockerfile
@@ -14,18 +14,20 @@ services:
   postgres:
     image: postgres
     env_file: 
-      - /home/deploy/apps/libguru/shared/secrets.env
+      - ~/apps/libguru/shared/secrets.env
     volumes: 
       - "/var/lib/postgresql/data:/var/lib/postgresql/data"
 
   sso-proxy:
     image: a5huynh/oauth2_proxy
     env_file:
-      - /home/deploy/apps/libguru/shared/secrets.env
+      - ~/apps/libguru/shared/secrets.env
     environment:
       VIRTUAL_HOST: libguru.internal.devguru.co
     links:
       - web
+    ports:
+      - "80:80"
     command: |
       --cookie-secure=false
       --upstream="http://web:4000"
