@@ -11,13 +11,17 @@ defmodule Libguru.Scheduler do
   end
 
   def handle_info(:work, state) do
-    Libguru.FetchService.process()
+    process()
 
     schedule_work()
     {:noreply, state}
   end
 
+  def process() do
+    Libguru.FetchService.process()
+  end
+
   defp schedule_work() do
-    Process.send_after(self(), :work, 24 * 60 * 60 * 1000)
+    Process.send_after(self(), :work, 8 * 60 * 60 * 1000)
   end
 end

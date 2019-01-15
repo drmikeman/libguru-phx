@@ -7,7 +7,7 @@ defmodule Libguru.FetchService do
   end
 
   def fetch_repositories do
-    {200, data, _response} = Tentacat.Repositories.list_mine(client(), type: "owner")
+    data = Tentacat.Repositories.list_orgs(client(), Application.get_env(:libguru, :github_org))
     data |> Enum.map(&fetch_repository_data/1)
   end
 
@@ -58,7 +58,7 @@ defmodule Libguru.FetchService do
   end
 
   def process_gemfile({:ok, gemfile}) do
-    [_, deps] = Regex.run(~r/DEPENDENCIES\n(?<deps>.*)(?=\n\nRUBY)/s, gemfile)
+    [_, deps] = Regex.run(~r/DEPENDENCIES\n(?<deps>.*)(?=\n\n|\Z)/s, gemfile)
     Regex.scan(~r/\s*([\w\d-]+)\s/, deps) |> Enum.map(&(Enum.at(&1, 1)))
   end
 
