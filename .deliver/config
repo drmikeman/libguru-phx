@@ -1,0 +1,17 @@
+APP="libguru"
+
+BUILD_HOST="libguru.internal.devguru.co"
+BUILD_USER="deploy"
+BUILD_AT="/home/deploy/apps/libguru/build"
+
+PRODUCTION_HOSTS="libguru.internal.devguru.co" 
+PRODUCTION_USER="deploy" 
+DELIVER_TO="/home/deploy/apps/libguru/release"
+
+pre_erlang_clean_compile() {
+ status "Building docker image"
+ __sync_remote "
+  cd '$BUILD_AT'
+  docker-compose -f docker-compose-production.yml build
+ "
+}

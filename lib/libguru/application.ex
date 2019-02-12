@@ -14,6 +14,7 @@ defmodule Libguru.Application do
       supervisor(LibguruWeb.Endpoint, []),
       # Start your own worker by calling: Libguru.Worker.start_link(arg1, arg2, arg3)
       # worker(Libguru.Worker, [arg1, arg2, arg3]),
+      worker(Libguru.Scheduler, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

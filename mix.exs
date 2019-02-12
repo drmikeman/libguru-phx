@@ -20,7 +20,7 @@ defmodule Libguru.Mixfile do
   def application do
     [
       mod: {Libguru.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ex_machina]
+      extra_applications: [:logger, :runtime_tools, :ex_machina, :edeliver]
     ]
   end
 
@@ -42,10 +42,11 @@ defmodule Libguru.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:distillery, "~> 1.0.0"},
+      {:distillery, "~> 2.0.0"},
       {:ex_machina, "~> 2.2"},
       {:faker, "~> 0.10"},
       {:tentacat, "~> 1.0"},
+      {:edeliver, ">= 1.6.0"},
     ]
   end
 
