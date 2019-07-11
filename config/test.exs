@@ -17,3 +17,5 @@ config :libguru, Libguru.Repo,
   database: "libguru_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :libguru, :github_api, TentacatMock

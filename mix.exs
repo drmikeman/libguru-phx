@@ -46,6 +46,7 @@ defmodule Libguru.Mixfile do
       {:ex_machina, "~> 2.2"},
       {:faker, "~> 0.10"},
       {:tentacat, "~> 1.0"},
+      {:mox, "~> 0.4", only: :test}
     ]
   end
 
